@@ -5,14 +5,30 @@ html ng-app="app"
     meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     title Crossover
     
-    link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet"
+    link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet"
     link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
 
     = csrf_meta_tags
     = stylesheet_link_tag 'public'
   body
-    h1 test
-    ui-view
+    = render "layouts/public/header"
+
+    .page.page-dashboard
+      .page-nav
+        .page-nav-inner
+          ul.page-nav__list
+            li ui-sref-active="active"
+              a ui-sref="public_requests_path({status: 'new'})" New
+            li ui-sref-active="active"
+              a ui-sref="public_requests_path({status: 'opened'})" Opened
+            li ui-sref-active="active"
+              a ui-sref="public_requests_path({status: 'closed'})" Closed
+            li ui-sref-active="active"
+              a ui-sref="public_requests_path({status: 'all'})" All
+          .page-nav__actions
+            a.btn.btn-accent ui-sref="new_public_request_path" New request
+
+      ui-view
     
     = render template: "public/_components/index"
     = render template: "public/_modals/index"

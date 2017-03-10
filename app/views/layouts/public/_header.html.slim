@@ -1,0 +1,10 @@
+header.header
+  .header-inner
+    .header-logo
+      a ui-sref="root_path" CROSSOVER
+    .header-icons
+    .header-logged
+      a ui-sref="user_path(gon.current_user)"
+        span ng-bind="gon.current_user.name || 'Guest'"
+        .avatar
+          img ng-src="{{gon.current_user.avatar.thumb.url || '/avatar.jpg'}}"
