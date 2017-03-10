@@ -48,3 +48,4 @@ gem "oxymoron", git: "https://github.com/storuky/oxymoron.git", branch: :master
 gem 'oj'
 gem 'oj_mimic_json'
 gem 'file_validators'
+gem 'active_model_serializers', '>= 0.9.2'

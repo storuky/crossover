@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+html ng-app="app"
+  head
+    meta charset="UTF-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    title Crossover
+    
+    link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+
+    = csrf_meta_tags
+    = stylesheet_link_tag 'public'
+  body
+    h1 test
+    ui-view
+    
+    = render template: "public/_components/index"
+    = render template: "public/_modals/index"
+    = Gon::Base.render_data({})
+    script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async="" defer=""
+    = javascript_include_tag 'public'
