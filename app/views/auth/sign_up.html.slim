@@ -1,0 +1,17 @@
+.auth-form
+  h2 Sign Up
+  form ng-submit="ctrl.submit()"
+    .form-group
+      label Email
+      input.form-control type="email" autofocus="true" ng-model="ctrl.user.email"
+    .form-group
+      label Password
+      input.form-control type="password" autocomplete="off" ng-model="ctrl.user.password"
+    .form-group
+      label Password confirmation
+      input.form-control type="password" autocomplete="off" ng-model="ctrl.user.password_confirmation"
+    .form-group
+      div ng-model="ctrl.user.recaptcha" vc-recaptcha="" key="'#{Rails.application.secrets[:recaptcha]["public_key"]}'"
+    .actions
+      a.pull-left ui-sref="sign_path({type: 'in'})" Sign in
+      button.btn.btn-accent.pull-right type="submin" Register

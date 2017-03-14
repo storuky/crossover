@@ -1,0 +1,12 @@
+.auth-form
+  h2 Sign In
+  form ng-submit="ctrl.submit()"
+    .form-group
+      label Email
+      input.form-control type="email" autofocus="true" ng-model="ctrl.user.email"
+    .form-group
+      label Password
+      input.form-control type="password" autocomplete="off" ng-model="ctrl.user.password"
+    .actions
+      a.pull-left ui-sref="sign_path({type: 'up'})" Sign up
+      button.btn.btn-accent.pull-right type="submit" Login

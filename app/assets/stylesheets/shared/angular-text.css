@@ -1,0 +1,12 @@
+.ta-toolbar button {
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+  font-size: 18px;
+  padding: 10px;
+  color: #5A5A5A;
+}
+
+.btn-group {
+  display: inline-block;
+}

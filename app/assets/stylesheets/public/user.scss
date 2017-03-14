@@ -1,0 +1,32 @@
+.user-page {
+  padding: 25px 0;
+  margin: auto;
+  width: 800px;
+}
+
+.user-col {
+  width: 300px;
+  float: left;
+  margin-right: 25px;
+}
+
+.user-col:last-child {
+  margin-right: 0;
+}
+
+.user-avatar-col {
+  width: 150px;
+}
+
+.user-avatar img {
+  width: 150px;
+}
+
+.user-submit {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.user-avatar-col .btn {
+  width: 100%;
+}

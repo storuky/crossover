@@ -10,24 +10,11 @@ html ng-app="app"
 
     = csrf_meta_tags
     = stylesheet_link_tag 'public'
-  body
+  body.ng-cloak
     = render "layouts/public/header"
 
     .page.page-dashboard
-      .page-nav
-        .page-nav-inner
-          ul.page-nav__list
-            li ui-sref-active="active"
-              a ui-sref="public_requests_path({status: 'new'})" New
-            li ui-sref-active="active"
-              a ui-sref="public_requests_path({status: 'opened'})" Opened
-            li ui-sref-active="active"
-              a ui-sref="public_requests_path({status: 'closed'})" Closed
-            li ui-sref-active="active"
-              a ui-sref="public_requests_path({status: 'all'})" All
-          .page-nav__actions
-            a.btn.btn-accent ui-sref="new_public_request_path" New request
-
+      = render "public/requests/nav"
       ui-view
     
     = render template: "public/_components/index"

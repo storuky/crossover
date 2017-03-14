@@ -1,0 +1,8 @@
+a.dashboard-row ui-sref="public_request_path({id: request[0]})"
+  .dashboard-sub-row
+    .dashboard-col.dc-text ng-bind="request[1]"
+    .dashboard-col.dc-category
+      span ng-bind="request[4]"
+    .dashboard-col.dc-date ng-bind="request[2] | date:'medium'"
+    .dashboard-col.dc-status
+      div ng-class="'status status-'+request[3]" ng-bind="request[3]"

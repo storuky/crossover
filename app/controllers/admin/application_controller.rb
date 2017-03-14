@@ -1,18 +1,18 @@
 class Admin::ApplicationController < ApplicationController
-  before_action :authenticate_user!
-
-  layout proc {
-    if request.xhr?
-      false
-    else
-      set_gon
-      "public"
-    end
-  }
+  before_action :check_admin
 
   private
-    def set_gon
-      gon.current_user = CurrentUserSerializer.new(current_user, root: false) if current_user
-      gon.layout = "public"
+    def check_admin
+      unless current_user.admin?
+        if request.xhr?
+          render json: {redirect_to_url: sign_path(type: "in")}
+        else
+          redirect_to sign_path(type: "in")
+        end
+      end
+    end
+
+    def set_layout
+      "admin"
     end
 end

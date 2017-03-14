@@ -5,16 +5,14 @@
 //= require oxymoron/angular-aria
 //= require oxymoron/angular-touch
 //= require oxymoron/angular-sanitize
-//= require pagination
+//= require paging
 //= require oxymoron/angular-cookies
 //= require oxymoron/angular-ui-router
 //= require oxymoron/ng-notify
 //= require oxymoron/underscore
 //= require oxymoron/perfect-scrollbar
 //= require oxymoron
-//= require angular-tooltips
 //= require ng-dialog
 //= require action_cable
 //= require angular-recaptcha
 //= require_tree ../../../vendor/assets/javascripts/text_angular
-//= require_tree ./shared

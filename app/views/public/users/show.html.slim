@@ -1,0 +1,14 @@
+.user-page
+  h1 Profile
+  form ng-submit="ctrl.save(ctrl.user)"
+    .clearfix
+      .user-col.user-avatar-col
+        .user-avatar
+          img ng-src="{{ctrl.user.avatar_url || '/avatar.jpg'}}"
+      .user-col
+        div
+          label Name:
+          span ng-bind="ctrl.user.name || 'Unnamed'"
+        div
+          label Email:
+          a ng-bind="ctrl.user.email" ng-href="mailto:{{ctrl.user.email}}"

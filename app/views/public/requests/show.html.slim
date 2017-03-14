@@ -1,1 +1,15 @@
-h1 Show
+.request-page
+  h1
+    span ng-bind="::ctrl.request.title"
+    span.request-status.status ng-bind="::ctrl.request.status" ng-class="'status-'+ctrl.request.status"
+  .request-messages
+    .request-message ng-repeat="message in ctrl.messages"
+      .clearfix
+        .request-message__user
+          img ng-src="{{::message[5] || '/avatar.jpg'}}" height="30"
+          a ui-sref="public_user_path({id: message[3]})" ng-bind="::message[4] || 'unnamed'"
+        .request-message__date ng-bind="::message[2] | date:'medium'"
+      .request-message__content ng-bind-html-compile="::message[1]"
+  .request-actions ng-show="ctrl.request.status == 'opened'"
+    div text-angular="" ng-model="ctrl.content" ta-toolbar="taToolbar"
+    a.btn.btn-accent ng-click="ctrl.send()" Send

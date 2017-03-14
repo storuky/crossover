@@ -1,0 +1,11 @@
+.page-nav ng-if="gon.current_user"
+  .page-nav-inner
+    ul.page-nav__list
+      li ui-sref-active="active"
+        a ui-sref="public_requests_path({status: 'opened'})" Opened
+      li ui-sref-active="active"
+        a ui-sref="public_requests_path({status: 'closed'})" Closed
+      li ui-sref-active="active"
+        a ui-sref="public_requests_path({status: 'all'})" All
+    .page-nav__actions
+      a.btn.btn-accent ui-sref="new_public_request_path" New request

@@ -1,0 +1,13 @@
+= form_for [:public, Request.new] do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :category
+    select.form-control ng-options="category.id as category.name for category in gon.categories" ng-model="ctrl.request.category_id" name="request[category]"
+  = f.fields_for :messages, Request::Message.new, child_index: "0" do |m|
+    .form-group
+      = m.angular_text :content
+    
+  .actions
+    = f.submit "Submit", class: "btn btn-accent"

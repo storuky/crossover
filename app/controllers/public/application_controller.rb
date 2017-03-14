@@ -1,16 +1,18 @@
 class Public::ApplicationController < ApplicationController
-  layout proc {
-    if request.xhr?
-      false
-    else
-      set_gon
-      "public"
-    end
-  }
+  before_action :check_current_user
 
   private
-    def set_gon
-      gon.current_user = CurrentUserSerializer.new(current_user, root: false) if current_user
-      gon.layout = "public"
+    def check_current_user
+      unless current_user
+        if request.xhr?
+          render json: {redirect_to_url: sign_path(type: "in")}
+        else
+          redirect_to sign_path(type: "in")
+        end
+      end
+    end
+
+    def set_layout
+      "public"
     end
 end

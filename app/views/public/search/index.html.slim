@@ -1,0 +1,7 @@
+.search-page
+  h1 ng-show="ctrl.params.query" Requests for «{{ctrl.params.query}}»
+
+  request-row request="request" ng-repeat="request in ctrl.requests"
+  
+  div ng-if="ctrl.total_count > 30" paging="" page="page" page-size="30" total="ctrl.total_count" paging-action="ctrl.pagingAction(page)"
+

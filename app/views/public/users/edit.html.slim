@@ -1,0 +1,33 @@
+.user-page
+  h1 Profile
+  form ng-submit="ctrl.save({id: ctrl.user.id, user: ctrl.user})"
+    .clearfix
+      .user-col.user-avatar-col
+        label.label Avatar
+        .user-avatar
+          img ng-src="{{ctrl.user.avatar.thumb.url || '/avatar.jpg'}}"
+        .form-group
+          label.btn.btn-success.pull-left
+            input.hidden type="file" fileupload="Routes.avatar_public_users_path({format: 'json'})" ng-model="ctrl.user.avatar"
+            | Upload
+      .user-col
+        .form-group
+          label Email
+          input.form-control type="email" autofocus="true" ng-model="ctrl.user.email"
+        .form-group
+          label Name
+          input.form-control type="text" autofocus="true" ng-model="ctrl.user.name"
+      .user-col
+        .form-group
+          label Current password
+          input.form-control type="password" autofocus="true" ng-model="ctrl.user.current_password"
+        .form-group
+          label New password
+          input.form-control type="password" autofocus="true" ng-model="ctrl.user.password"
+        .form-group
+          label Confirm password
+          input.form-control type="password" autofocus="true" ng-model="ctrl.user.password_confirmation"
+
+    .user-submit.clearfix
+      button.btn.btn-accent.pull-left type="submit" Update
+      a.btn.btn-danger.pull-right Cancel accout

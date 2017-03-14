@@ -109,7 +109,8 @@ ul.page-nav__list>li>a {
 .page-nav__actions {
   position: absolute;
   right: 0;
-  margin: 0 40px;
+  margin: 22px 40px;
+  top: 0;
 }
 
 .page-dashboard .dashboard-row {
@@ -136,6 +137,7 @@ ul.page-nav__list>li>a {
   -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
   border-bottom: 1px solid #ddd;
+  color: #333;
 }
 
 .page-dashboard .dashboard-sub-row:first-child {
