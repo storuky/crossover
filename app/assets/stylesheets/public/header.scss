@@ -66,6 +66,10 @@
   flex: 40%;
 }
 
+.header-logged a {
+  margin-left: 25px;
+}
+
 .header-logged a .avatar {
   line-height: 40px;
   text-align: center;
@@ -108,7 +112,7 @@
   position: absolute;
   z-index: 1;
   color: #333;
-  margin: 4px 6px;
+  margin: 4px 7px;
 }
 
 .header-search input {
@@ -127,4 +131,10 @@
 .header-search input.active {
   opacity: 1;
   width: 200px;
+}
+
+.sign-out {
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 18px;
 }

@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  before_action :redirect_if_signed_in
+  before_action :redirect_if_signed_in, except: [:logout]
   before_action :verify_recaptcha, only: [:register]
   layout proc {request.xhr? ? false : "public"}
 
@@ -10,7 +10,7 @@ class AuthController < ApplicationController
     if user.valid_password?(sign_in_params[:password])
       user.remember_me = sign_in_params[:remember_me]
       sign_in(user, scope: :user)
-      render json: {msg: "Successfully signed in", redirect_to_url: public_requests_path(status: 'opened')}
+      render json: {msg: "Successfully signed in", current_user: serialize(current_user), redirect_to_url: public_requests_path(status: 'opened')}
     else
       render json: {msg: "Invalid password"}, status: 403
     end
@@ -20,10 +20,16 @@ class AuthController < ApplicationController
   def register
     user = User.new(sign_up_params)
     if user.save
-      render json: {msg: "Successfully signed up", redirect_to_url: public_requests_path(status: 'opened')}
+      sign_in(user, scope: :user)
+      render json: {msg: "Successfully signed up", current_user: serialize(current_user), redirect_to_url: public_requests_path(status: 'opened')}
     else
       render json: {errors: user.errors, msg: user.errors.full_messages.join('; ')}, status: 403
     end
+  end
+
+  def logout
+    sign_out
+    render json: {msg: "Successfully signed out", redirect_to_url: sign_path(type: "in")}
   end
 
   def sign

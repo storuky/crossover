@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
 
   private
     def set_gon
-      gon.current_user = serialize(current_user, serializer: CurrentUserSerializer) if current_user
+      gon.current_user = serialize(current_user) if current_user
+      gon.roles = ['admin', 'support_agent']
       gon.categories = serialize(Request::Category.all)
     end
 

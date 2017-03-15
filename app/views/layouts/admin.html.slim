@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html ng-app="app"
+  head
+    meta charset="UTF-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    title Crossover | Admin
+    
+    link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+
+    = csrf_meta_tags
+    = stylesheet_link_tag 'admin'
+  body.ng-cloak
+    = render "layouts/admin/header"
+    .wrapper
+      = render "layouts/admin/sidebar"
+      .page-bg
+        ui-view
+    
+    = render template: "admin/_components/index"
+    = render template: "admin/_modals/index"
+    = Gon::Base.render_data({})
+    script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async="" defer=""
+    = javascript_include_tag 'admin'

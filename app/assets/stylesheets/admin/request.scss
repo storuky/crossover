@@ -1,0 +1,157 @@
+.request-row {
+  border-bottom: 1px solid #ccc;
+  overflow: hidden;
+  display: block;
+  color: #333;
+}
+
+.request-row:hover {
+  background: #f7f7f7;
+}
+
+.request-col {
+  float: left;
+  padding: 10px 15px;
+}
+
+.request-title {
+  width: 40%;
+}
+
+.request-date {
+  width: 15%;
+}
+.request-category {
+  width: 15%;
+}
+.request-user {
+  width: 10%;
+}
+.request-status {
+  width: 10%;
+}
+
+.request-count {
+  width: 10%;
+}
+.request-count i {
+  font-size: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.request-header {
+  position: absolute;
+  top: 0;
+  height: 65px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+}
+.request-header:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 55px 34px white;
+}
+.request-body {
+  position: absolute;
+  top: 67px;
+  bottom: 210px;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-bottom: 20px;
+}
+.request-actions {
+  height: 210px;
+  padding: 0 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #d8d8d8;
+  right: 0;
+}
+.request-header-avatar {
+  padding: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.request-header-avatar img {
+  display: block;
+}
+
+.request-header-username {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 20px;
+}
+
+.request-header-title {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+  white-space: nowrap;
+  position: absolute;
+  top: 18px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.request-messages {
+
+}
+.request-message {
+  padding: 10px;
+  width: 60%;
+  margin: 20px;
+  position: relative;
+}
+
+.request-message:not(.my) {
+  background: #f7f7f7;
+  float: left;
+  border-radius: 10px 10px 10px 0;
+}
+
+.request-message.my {
+  background: rgba(174, 213, 129, 0.35);
+  border-radius: 10px 10px 0 10px;
+  float: right;
+}
+
+.request-message:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  bottom: -12px;
+}
+
+.request-message:not(.my):after {
+  left: 0;
+  border-width: 0 12px 12px 0;
+  border-color: transparent #f7f7f7 transparent transparent;
+}
+
+.request-message.my:after {
+  right: 0;
+  border-width: 12px 12px 0 0;
+  border-color: rgba(174, 213, 129, 0.35) transparent transparent transparent;
+}
+
+.request-message__date {
+  display: inline-block;
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  font-size: 12px;
+  color: #5d5d5d;
+}

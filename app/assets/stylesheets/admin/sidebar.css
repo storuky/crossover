@@ -1,0 +1,40 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  background-color: #2d323e;
+  overflow: hidden;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+  transition: .3s;
+}
+
+.sidebar.collapse {
+  margin-left: -240px;
+}
+.sidebar.collapse ~ .page-bg {
+  left: 0;
+}
+
+.sidebar-link {
+  height: 48px;
+  display: block;
+  font-size: 14px;
+  line-height: 48px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  padding-right: 16px;
+  padding-left: 24px;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.sidebar-link:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.sidebar-link.active {
+  background: #106CC8;
+  color: white;
+}

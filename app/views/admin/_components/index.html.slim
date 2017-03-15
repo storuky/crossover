@@ -1,5 +1,5 @@
 - Dir[File.dirname(__FILE__) + '/*/_*.html*', File.dirname(__FILE__) + '/_*.html*'].each do |partial|
-  script type="text/ng-template" id="components/#{File.basename(partial).gsub('.slim', '')[1..-1]}"
+  script type="text/ng-template" id="admin/components/#{File.basename(partial).gsub('.slim', '')[1..-1]}"
     =render file: partial
 
 = render template: "shared/_components/index"

@@ -1,0 +1,55 @@
+h1 Report for requests
+
+.report-params
+  - if params[:query]
+    .report-param
+      .report-param__name Search query:
+      .report-param__value = "«#{params[:query]}»"
+  - if params[:status]
+    .report-param
+      .report-param__name By status:
+      .report-param__value
+        .status class="status-#{params[:status]}" = params[:status]
+  - if params[:category_ids].try(:any?)
+    .report-param
+      .report-param__name With categories:
+      .report-param__value
+        - @active_categories.pluck(:name).each do |name|
+          span.report-param__category = name
+  - if params[:user_id]
+    .report-param
+      .report-param__name By user:
+      .report-param__value
+        a href="mailto:#{@active_user.email}" = @active_user.name
+  - if params[:date_from]
+    .report-param
+      .report-param__name Date:
+      .report-param__value
+        div = "#{normalize_date(params[:date_from])} — #{normalize_date(params[:date_to])}"
+
+hr
+
+table.table.table-bordered
+  thead
+    tr
+      th Title
+      th Messages
+      th Category
+      th User
+      th Date
+      th Status
+  tbody
+    - @requests.pluck_fields.each do |r|
+      tr
+        td
+          = r[1]
+        td
+          = r[6]
+        td
+          = r[4]
+        td
+          = r[5]
+        td
+          = normalize_datetime r[2]
+        td
+          = r[3]

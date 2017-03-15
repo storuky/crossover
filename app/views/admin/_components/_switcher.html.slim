@@ -1,0 +1,2 @@
+.switcher ng-class="'switcher-item-'+items.length"
+  .switcher-item ng-repeat="item in items" ng-bind="item.name || item" ng-click="setActive(item)" ng-class="{active: isActive(item)}"

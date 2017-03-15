@@ -2,16 +2,14 @@ app.controller('PublicRequestsCtrl', ['action', 'PublicRequest', 'PublicRequestM
   var ctrl = this;
 
   action('index', function (params) {
-    $scope.page = params.page;
-
-    ctrl.pagingAction = function (page) {
-      params.page = page;
+    ctrl.fetch = function (page) {
+      params.page = page || 1;
       ctrl.requests = PublicRequest.query(params, function (res, h) {
         ctrl.total_count = h().total_count;
       });
     }
 
-    ctrl.pagingAction(params.page || 1)
+    ctrl.fetch()
   })
 
   action('new', function () {
@@ -20,7 +18,9 @@ app.controller('PublicRequestsCtrl', ['action', 'PublicRequest', 'PublicRequestM
 
   action('show', function (params) {
     ctrl.request = PublicRequest.get(params);
-    ctrl.messages = PublicRequestMessage.query({request_id: params.id});
+    PublicRequestMessage.query({request_id: params.id}, function (res) {
+      ctrl.messages = res;
+    });
 
     ctrl.send = function () {
       PublicRequestMessage.create({request_id: params.id, content: ctrl.content}, function () {
@@ -29,12 +29,14 @@ app.controller('PublicRequestsCtrl', ['action', 'PublicRequest', 'PublicRequestM
     }
 
     $scope.$on('new_request_message', function (e, data) {
-      ctrl.messages.push(data);
+      if (data[6] == params.id)
+        ctrl.messages.push(data);
     })
 
-    $scope.$watchCollection('ctrl.messages', function (messages) {
+    $scope.$watchCollection('ctrl.messages', function (messages, old) {
       $timeout(function () {
-        $("html, body").animate({ scrollTop: $(document).height() }, 300);
+        var duration = old ? 200 : 0;
+        $("html, body").animate({ scrollTop: $(document).height() }, duration);
       })
     })
   })

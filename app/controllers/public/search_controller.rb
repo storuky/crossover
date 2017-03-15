@@ -5,7 +5,7 @@ class Public::SearchController < Public::ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        @requests = Request.look_for(params[:query]).where(user: current_user)
+        @requests = Request.look_for(params[:query]).where(user: current_user).order("requests.updated_at DESC")
         
         response.headers['total_count'] = @requests.count
         @requests = @requests.page(params[:page]).per(30)

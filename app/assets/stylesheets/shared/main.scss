@@ -22,6 +22,19 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 0 0 8px 0;
+  line-height: 1;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.black {
+  color: black;
+}
+
 .btn {
   display: inline-block;
   margin-bottom: 0;
@@ -41,6 +54,10 @@ a {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.btn-xs {
+  padding: 1px 10px;
 }
 
 .btn-accent {
@@ -91,6 +108,20 @@ a {
   border-color: #66BB6A;
 }
 
+.btn-download {
+  border: 1px solid #ccc;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 2px 15px;
+  border-radius: 5px;
+  background: #eaeaea;
+  cursor: pointer;
+}
+
+.btn-download:hover {
+  background: #d6d6d6;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -105,7 +136,7 @@ label {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 100% !important;
   height: 38px;
   padding: 6px 12px;
   font-size: 13px;
@@ -113,11 +144,15 @@ label {
   color: #555;
   background-color: #fff;
   background-image: none;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+  border-color: #afa7a7;
 }
 
 .clearfix:after {
@@ -146,4 +181,40 @@ label {
 
 .hidden {
   display: none;
+}
+
+.checkbox {
+  display: block;
+  cursor: pointer;
+}
+
+.checkbox * {
+  vertical-align: middle;
+}
+
+.checkbox input {
+  display: none;
+}
+.checkbox-checked {
+  display: none;
+}
+
+.checkbox-not-checked{
+  display: inline-block;
+}
+.checkbox i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.checkbox input:checked ~ .checkbox-not-checked {
+  display: none;
+}
+.checkbox input:checked ~ .checkbox-checked {
+  display: inline-block;
+}
+.small {
+  font-size: 12px;
+}
+.gray {
+  color: #ccc !important;
 }

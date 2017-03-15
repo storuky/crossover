@@ -1,0 +1,81 @@
+.header {
+  background-color: white;
+  position: relative;
+  color: rgba(0,0,0,0.87);
+  height: 64px;
+  z-index: 2;
+  min-height: 64px;
+  max-height: 64px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+.toggle-sidebar {
+  font-size: 34px;
+  cursor: pointer;
+  color: rgba(0,0,0,0.54);
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  display: inline-block;
+  line-height: 0;
+}
+
+.user-bar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 20px;
+  display: block;
+  white-space: nowrap;
+  border-left: 1px solid #E1E1E1;
+  cursor: default;
+  padding-right: 40px;
+}
+
+.user-bar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  vertical-align: middle;
+}
+
+.user-bar i {
+  color: #4caf50;
+  font-size: 16px;
+  margin-left: -12px;
+  margin-top: 25px;
+  background: white;
+  border-radius: 20px;
+  position: absolute;
+  display: inline-block;
+}
+
+.user-bar__name {
+  vertical-align: middle;
+  margin-left: 16px;
+  display: inline-block;
+  font-weight: 500;
+  position: relative;
+  top: 1px;
+}
+
+.user-bar__sign-out {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0 15px;
+}
+
+.user-bar__sign-out i {
+  font-size: 20px;
+  margin-top: 23px;
+  cursor: pointer;
+}
+
+.logo {
+  position: absolute;
+  margin: 11px 50px 11px 78px;
+  font-size: 20px;
+  color: rgba(45, 50, 62, 0.84) !important;
+}

@@ -5,7 +5,7 @@ class Public::UsersController < Public::ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: CurrentUserSerializer.new(current_user)
+        render json: dump(current_user)
       }
     end
   end

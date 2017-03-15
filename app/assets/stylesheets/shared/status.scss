@@ -1,0 +1,15 @@
+.status {
+  display: inline-block;
+  padding: 2px 5px;
+  background: #eee;
+}
+
+.status-opened {
+  background: #2196F3;
+  color: white;
+}
+
+.status-closed {
+  background: #F44336;
+  color: white;
+}

@@ -26,6 +26,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "awesome_print"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -51,3 +52,6 @@ gem 'file_validators'
 gem 'active_model_serializers', '>= 0.9.2'
 gem 'rest-client'
 gem 'kaminari'
+gem 'rolify'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'

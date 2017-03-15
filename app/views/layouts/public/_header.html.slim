@@ -6,7 +6,10 @@ header.header
       i.fa.fa-search
       input type="text" placeholder="Search" ng-model="Search.query" ng-class="{active: Search.query}"
     .header-logged
+      a ui-sref="admin_requests_path" target="_self" ng-show="gon.current_user.role == 'admin' || gon.current_user.role == 'support_agent'" Admin panel
       a ui-sref="edit_public_user_path(gon.current_user)" ng-if="gon.current_user"
         span ng-bind="gon.current_user.name || gon.current_user.email"
         .avatar
           img ng-src="{{gon.current_user.avatar.thumb.url || '/avatar.jpg'}}"
+        a.sign-out sign="out"
+          i.fa.fa-sign-out

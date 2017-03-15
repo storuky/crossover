@@ -1,0 +1,19 @@
+.page.page-centered
+  .request-header
+    a.request-header-avatar ui-sref="admin_user_path(ctrl.user)"
+      img ng-src="{{::ctrl.user.avatar_url}}" height="40"
+    .request-header-username
+      div
+        a.black ui-sref="admin_user_path(ctrl.user)" ng-bind="ctrl.user.name"
+      div
+        a.underline ng-href="mailto:{{ctrl.user.email}}" ng-bind="ctrl.user.email"
+    .request-header-title ng-bind="ctrl.request.title" title="{{ctrl.request.title}}"
+  .request-body
+    .request-message ng-repeat="message in ctrl.messages" ng-class="{my: message[3] == gon.current_user.id}"
+      .request-message__date ng-bind="::message[2] | date:'medium'"
+      .request-message__content ng-bind-html-compile="::message[1]"
+  form.request-actions ng-submit="ctrl.send()"
+    div text-angular="" ng-model="ctrl.content" ta-toolbar="taToolbar"
+    a.btn.btn-danger.pull-left ng-click="ctrl.close()" ng-show="ctrl.request.status == 'opened'" Close request
+    a.btn.btn-success.pull-left ng-click="ctrl.open()" ng-show="ctrl.request.status == 'closed'" Open request
+    button.btn.btn-accent.pull-right Send

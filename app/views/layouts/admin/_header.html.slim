@@ -1,0 +1,10 @@
+header.header
+  .toggle-sidebar
+    i.material-icons menu
+  a.logo href="/" target="_self" CROSSOVER
+  .user-bar
+    img.user-bar__avatar ng-src="{{gon.current_user.avatar_url || '/avatar.jpg'}}"
+    i.material-icons check_circle
+    span.user-bar__name ng-bind="gon.current_user.name"
+    .user-bar__sign-out sign="out" role="button" tabindex="0"
+      i.material-icons exit_to_app

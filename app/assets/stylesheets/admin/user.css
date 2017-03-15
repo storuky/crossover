@@ -1,0 +1,13 @@
+.user-page {
+  padding: 20px;
+}
+
+.user-page-left {
+  float: left;
+  margin-right: 20px;
+}
+
+.user-page-right {
+  float: left;
+  width: 600px;
+}

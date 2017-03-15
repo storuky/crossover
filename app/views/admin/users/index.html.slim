@@ -1,0 +1,11 @@
+.page.page-centered
+  search query="ctrl.filter.query"
+
+  .crossover-list
+    .crossover-list__item ng-repeat="user in ctrl.users"
+      .alphabetical__item__photo ng-style="{'background-image': 'url('+user[3]+')'}"
+      .alphabetical__item__description
+        a ng-bind="user[1]" ui-sref="edit_admin_user_path({id: user[0]})"
+        br
+        .small
+          a.gray ng-href="mailto:{{user[2]}}" ng-bind="user[2]"

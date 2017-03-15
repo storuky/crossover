@@ -1,17 +1,17 @@
 class Request::Message < ApplicationRecord
-  belongs_to :request
+  belongs_to :request, counter_cache: true
   belongs_to :user
 
   validates :content, presence: true, length: { minimum: 2 }
   validate :request_status
 
-  before_save :strip_tags
-  before_save :set_user
+  before_create :strip_tags
+  before_create :set_user
   after_create :ws
 
   class << self
     def pluck_fields fields = [], except = []
-      args = [:id, :content, :created_at, "users.id", "users.name", "users.avatar_url"] + fields - except
+      args = [:id, :content, :created_at, "users.id", "users.name", "users.avatar_url", :request_id] + fields - except
       self.joins(:user).pluck *args
     end
   end
@@ -21,13 +21,13 @@ class Request::Message < ApplicationRecord
   end
 
   def ws
-    RequestChannel.broadcast_to(self.user, self.pluck_fields)
-    # if self.user.has_role?(:admin)
-    # else
-    #   User.with_role(:admin).each do |user|
-    #     RequestChannel.broadcast_to(user, Request::Message.serialize(self, serializer: Request::MessageSerializer))
-    #   end
-    # end
+    self.request.users.each do |user|
+      RequestChannel.broadcast_to(user, self.pluck_fields)
+    end
+
+    User.with_role(:admin).where.not(id: self.request.user_ids).each do |user|
+      RequestChannel.broadcast_to(user, self.pluck_fields)
+    end
   end
 
   private
@@ -42,7 +42,7 @@ class Request::Message < ApplicationRecord
     end
 
     def request_status
-      if self.request.closed?
+      if request&.closed?
         errors.add("Request was closed", "")
       end
     end

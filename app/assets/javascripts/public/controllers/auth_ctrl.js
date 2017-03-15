@@ -3,9 +3,14 @@ app.controller('AuthCtrl', ['action', '$http', function(action, $http){
 
   action("sign", function (params) {
     ctrl.submit = function () {
-      $http.post(Routes['sign_'+params.type+'_path'](), {user: ctrl.user})
+      var methods = {
+        in: "login",
+        up: "register"
+      }
+
+      $http.post(Routes[methods[params.type]+'_path'](), {user: ctrl.user})
            .then(function (res) {
-             gon.current_user = res.current_user;
+             gon.current_user = res.data.current_user;
            })
     }
   })

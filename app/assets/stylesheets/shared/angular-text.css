@@ -10,3 +10,17 @@
 .btn-group {
   display: inline-block;
 }
+
+.request-actions .ta-scroll-window > .ta-bind {
+    min-height: 98px;
+}
+.request-actions .ta-editor {
+    min-height: 100px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin-bottom: 10px;
+    max-height: 100px;
+    width: 100%;
+}
