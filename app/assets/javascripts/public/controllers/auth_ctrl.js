@@ -17,7 +17,7 @@ app.controller('AuthCtrl', ['action', '$http', function(action, $http){
            .then(function (res) {
              if (!res.data.reload) gon.current_user = res.data.current_user;
            }, function () {
-            grecaptcha.reset();
+            if (ctrl.user.action == "register") grecaptcha.reset();
            })
 
       $event.preventDefault();

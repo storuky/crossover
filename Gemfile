@@ -18,6 +18,7 @@ group :development, :test do
 
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -26,7 +27,21 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "awesome_print"
+  gem 'awesome_print'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'rspec-retry'
+  gem "chromedriver-helper"
+  gem 'ci_reporter'
+  gem 'ci_reporter_rspec'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'guard-rails', '~> 0.7.2'
+  gem 'guard-rspec', '~> 4.7.2'
+  gem 'guard-spring'
+  gem 'simplecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

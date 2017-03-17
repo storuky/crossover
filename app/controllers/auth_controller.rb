@@ -20,7 +20,7 @@ class AuthController < ApplicationController
     user = User.new(sign_up_params)
     if user.save
       sign_in(user, scope: :user)
-      render json: {msg: "Successfully signed up", current_user: serialize(current_user), redirect_to_url: public_requests_path(status: 'opened'), reload: current_user.has_access_to_admin_panel?}
+      render json: {msg: "Welcome! You have signed up successfully.", current_user: serialize(current_user), redirect_to_url: public_requests_path(status: 'opened'), reload: current_user.has_access_to_admin_panel?}
     else
       render json: {errors: user.errors, msg: user.errors.full_messages.join('; ')}, status: 403
     end

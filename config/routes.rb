@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   mount ActionCable.server => '/cable'
 
   root to: "public/home#index"
@@ -14,7 +13,13 @@ Rails.application.routes.draw do
     get 'search' => 'search#index', ui_params: [:query], as: :search, is_array: true
 
     resources :users do
-      post "avatar", on: :collection
+      collection do
+        post "avatar"
+        get :edit
+        put :update
+        delete :destroy
+      end
+
     end
 
     resources :requests, ui_params: [:status] do
@@ -46,4 +51,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  
+  devise_for :users
+
 end
+

@@ -1,6 +1,6 @@
 .auth-form
   h2 Sign In
-  form ng-submit="ctrl.submit($event)"
+  form id="sign_form" ng-submit="ctrl.submit($event)"
     .form-group
       label Email
       input.form-control type="email" autofocus="true" ng-model="ctrl.user.email"

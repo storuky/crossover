@@ -76,6 +76,13 @@
 .logo {
   position: absolute;
   margin: 11px 50px 11px 78px;
-  font-size: 20px;
+  font-size: 16px;
   color: rgba(45, 50, 62, 0.84) !important;
+}
+
+.logo-role {
+  color: #106CC8;
+  font-size: 12px;
+  position: absolute;
+  top: 18px;
 }

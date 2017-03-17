@@ -1,10 +1,10 @@
 .sidebar
   .sidebar-user
-    .sidebar-user__avatar ng-style="{'background-image': 'url('+gon.current_user.avatar.thumb.url+')'}"
+    .sidebar-user__avatar ng-style="{'background-image': 'url('+(gon.current_user.avatar.thumb.url || '/avatar.jpg')+')'}"
     .sidebar-user__name ng-bind="gon.current_user.name"
 
   nav.sidebar-nav
     a ui-sref="public_requests_path" ui-sref-active="active" toggle-sidebar="" Requests
-    a ui-sref="edit_public_user_path(gon.current_user)" ui-sref-active="active" toggle-sidebar="" Profile
+    a ui-sref="edit_public_users_path()" ui-sref-active="active" toggle-sidebar="" Profile
 
 .sidebar-overlay toggle-sidebar=""

@@ -11,13 +11,18 @@ class Public::UsersController < Public::ApplicationController
   end
 
   def edit
-
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: dump(current_user)
+      }
+    end
   end
 
   def update
     if current_user.update(user_params)
       if user_params[:password]
-        sign_in(current_user, :bypass => true)
+        bypass_sign_in(current_user)
       end
       render json: {msg: "Profile was successfully updated", current_user: serialize(current_user)}
     else
@@ -25,8 +30,9 @@ class Public::UsersController < Public::ApplicationController
     end
   end
 
-  def cancel
-
+  def destroy
+    current_user.destroy
+    render json: {redirect_to: "root_path", reload: "true", msg: "Your account was deleted"}
   end
 
   def avatar

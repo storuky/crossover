@@ -1,6 +1,6 @@
 .auth-form
   h2 Sign Up
-  = form_for [:public, User.new], html: {"ng-submit" => "ctrl.submit($event)"} do |f|
+  = form_for [:public, User.new], html: {"ng-submit" => "ctrl.submit($event)", id: "sign_form"} do |f|
     .form-group
       = f.label :name
       = f.text_field :name, class: "form-control", autofocus: true

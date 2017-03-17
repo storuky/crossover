@@ -15,11 +15,10 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background: red;
+  background: #222222;
   z-index: 3;
   box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
   margin-right: -220px;
-  background: #222222;
   transition: .3s;
 }
 

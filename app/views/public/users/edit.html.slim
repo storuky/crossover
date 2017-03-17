@@ -1,6 +1,6 @@
 .user-page.page-content
   h1 Profile
-  form ng-submit="ctrl.save({id: ctrl.user.id, user: ctrl.user})"
+  form#user_form ng-submit="ctrl.save({id: ctrl.user.id, user: ctrl.user})"
     .clearfix
       .user-col.user-avatar-col
         label.label Avatar
@@ -12,22 +12,22 @@
             | Upload
       .user-col
         .form-group
-          label Email
-          input.form-control type="email" autofocus="true" ng-model="ctrl.user.email"
-        .form-group
           label Name
-          input.form-control type="text" autofocus="true" ng-model="ctrl.user.name"
+          input.form-control#user_name type="text" autofocus="true" ng-model="ctrl.user.name"
+        .form-group
+          label Email
+          input.form-control#user_email type="email" autofocus="true" ng-model="ctrl.user.email"
       .user-col
         .form-group
           label Current password
-          input.form-control type="password" autofocus="true" ng-model="ctrl.user.current_password"
+          input.form-control#current_password type="password" autofocus="true" ng-model="ctrl.user.current_password"
         .form-group
           label New password
-          input.form-control type="password" autofocus="true" ng-model="ctrl.user.password"
+          input.form-control#password type="password" autofocus="true" ng-model="ctrl.user.password"
         .form-group
           label Confirm password
-          input.form-control type="password" autofocus="true" ng-model="ctrl.user.password_confirmation"
+          input.form-control#password_confimation type="password" autofocus="true" ng-model="ctrl.user.password_confirmation"
 
     .user-submit.clearfix
       button.btn.btn-accent.pull-left type="submit" Update
-      a.btn.btn-danger.pull-right Cancel accout
+      a.btn.btn-danger.pull-right#cancel ng-click="ctrl.cancel()" Cancel account

@@ -11,5 +11,5 @@
         .request-message__date ng-bind="::message[2] | date:'medium'"
       .request-message__content ng-bind-html-compile="::message[1]"
   .request-actions ng-show="ctrl.request.status == 'opened'"
-    div text-angular="" ng-model="ctrl.content" ta-toolbar="taToolbar"
-    a.btn.btn-accent ng-click="ctrl.send()" Send
+    #message_body text-angular="" ng-model="ctrl.content" ta-toolbar="taToolbar"
+    a.btn.btn-accent#send ng-click="ctrl.send()" Send
