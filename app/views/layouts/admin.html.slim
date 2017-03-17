@@ -10,7 +10,7 @@ html ng-app="app"
 
     = csrf_meta_tags
     = stylesheet_link_tag 'admin'
-  body.ng-cloak
+  body
     = render "layouts/admin/header"
     .wrapper
       = render "layouts/admin/sidebar"

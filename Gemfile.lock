@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/storuky/oxymoron.git
-  revision: bf169618c1732418fd7475aa4baf25054b82da78
+  revision: babda3f4e423430cc923f6cd79d71537b6b4ae24
   branch: master
   specs:
-    oxymoron (1.1.5)
+    oxymoron (1.1.9)
       awesome_print
       pry
       pry-rails

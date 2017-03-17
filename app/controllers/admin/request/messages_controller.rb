@@ -2,6 +2,7 @@ class Admin::Request::MessagesController < Admin::ApplicationController
   before_action :set_request
 
   def index
+    @request.read! :support
     @messages = @request.messages.pluck_fields
     render json: @messages
   end

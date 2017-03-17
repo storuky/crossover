@@ -9,8 +9,9 @@
 }
 
 .request-page {
-  width: 800px;
-  margin: 25px auto;
+  max-width: 800px;
+  margin: auto;
+  padding: 25px;
 }
 .request-messages {
 
@@ -18,10 +19,6 @@
 .request-message:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
-.request-message__content {}
-.request-message__user {}
-.request-message__date {}
-.request-actions {}
 
 .request-message__user {
   float: left;
@@ -39,7 +36,7 @@
   vertical-align: middle;
 }
 
-.request-status {
+.request-message-status {
   margin-left: 10px;
   line-height: 29px;
   font-size: 16px;
@@ -49,4 +46,15 @@
 
 .request-message {
   padding: 10px 0;
+}
+.request-count {
+  visibility: hidden;
+}
+
+.request-row.unreaded .request-count {
+  visibility: visible;
+}
+
+.request-splitter {
+  display: none;
 }

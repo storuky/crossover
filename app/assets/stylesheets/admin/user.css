@@ -11,3 +11,7 @@
   float: left;
   width: 600px;
 }
+
+.blocked {
+  text-decoration: line-through !important;
+}

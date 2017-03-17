@@ -3,7 +3,11 @@ app.controller('PublicUsersCtrl', ['action', 'PublicUser', function (action, Pub
 
   action('edit', function (params) {
     ctrl.user = PublicUser.get(params);
-    ctrl.save = PublicUser.update;
+    ctrl.save = function (data) {
+      PublicUser.update(data, function (res) {
+        gon.current_user = res.current_user;
+      })
+    }
   })
 
   action('show', function (params) {

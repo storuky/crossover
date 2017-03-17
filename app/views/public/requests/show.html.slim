@@ -1,7 +1,7 @@
-.request-page
+.request-page.page-content
   h1
     span ng-bind="::ctrl.request.title"
-    span.request-status.status ng-bind="::ctrl.request.status" ng-class="'status-'+ctrl.request.status"
+    span.request-message-status.status ng-bind="::ctrl.request.status" ng-class="'status-'+ctrl.request.status"
   .request-messages
     .request-message ng-repeat="message in ctrl.messages"
       .clearfix

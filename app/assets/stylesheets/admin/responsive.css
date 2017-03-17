@@ -1,0 +1,23 @@
+@media screen and (max-width: 1000px) {
+  .request-col {
+    float: none;
+    display: inline-block;
+    width: auto;
+  }
+
+  .request-date {
+    color: #ccc;
+  }
+
+  .request-category {
+    color: #607D8B;
+  }
+
+  .request-status, .request-date, .request-category {
+    float: right !important;
+  }
+
+  .request-splitter {
+    display: block;
+  }
+}

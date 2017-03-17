@@ -7,16 +7,23 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
   validates :avatar, file_size: { less_than: 2.megabytes }
-  validates :name, presence: true, on: :update
+  validates :name, presence: true
 
   has_many :requests
   has_many :messages, class_name: Request::Message
 
   after_save :set_avatar_url
+  after_save :clear_cache
+
+  def has_access_to_admin_panel?
+    Rails.cache.fetch("User(#{id}).has_access_to_admin_panel?", expires_in: 1.minute) do
+      has_role?(:admin) || has_role?(:support_agent)
+    end
+  end
 
   class << self
     def pluck_fields fields = [], except = []
-      args = [:id, :name, :email, :avatar_url] + fields - except
+      args = [:id, :name, :email, :avatar_url, :banned] + fields - except
       self.pluck *args
     end
 
@@ -33,5 +40,9 @@ class User < ApplicationRecord
   private
     def set_avatar_url
       self.update_column(:avatar_url, self.avatar.thumb.url)
+    end
+
+    def clear_cache
+      Rails.cache.delete("User(#{id}).has_access_to_admin_panel?")
     end
 end

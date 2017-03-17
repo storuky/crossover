@@ -1,14 +1,14 @@
-.user-page
+.user-page.page-content
   h1 Profile
   form ng-submit="ctrl.save({id: ctrl.user.id, user: ctrl.user})"
     .clearfix
       .user-col.user-avatar-col
         label.label Avatar
         .user-avatar
-          img ng-src="{{ctrl.user.avatar.thumb.url || '/avatar.jpg'}}"
+          img ng-src="{{gon.current_user.avatar.thumb.url || '/avatar.jpg'}}"
         .form-group
           label.btn.btn-success.pull-left
-            input.hidden type="file" fileupload="Routes.avatar_public_users_path({format: 'json'})" ng-model="ctrl.user.avatar"
+            input.hidden type="file" fileupload="Routes.avatar_public_users_path({format: 'json'})" ng-model="gon.current_user.avatar"
             | Upload
       .user-col
         .form-group

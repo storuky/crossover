@@ -31,6 +31,11 @@ Rails.application.routes.draw do
       member do
         put :open
         put :close
+        put :read
+      end
+
+      collection do
+        get :unreaded_count
       end
     end
     resources :users do

@@ -10,6 +10,10 @@
           | Upload
     .user-page-right
       .form-group
+        = f.label :role
+        select.form-control ng-options="role as role for role in gon.roles" ng-model="ctrl.user.role"
+
+      .form-group
         = f.label :name
         = f.text_field :name, class: "form-control"
 
@@ -25,9 +29,6 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation, class: "form-control"
 
-      .form-group
-        = f.label :role
-        select.form-control ng-options="role as role for role in gon.roles" ng-model="ctrl.user.role"
 
   .actions.clearfix
     a.btn.btn-danger.pull-left ng-click="ctrl.block()" ng-hide="ctrl.user.banned" Block

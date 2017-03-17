@@ -1,0 +1,60 @@
+.sidebar-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0,0,0,.4);
+  display: none;
+}
+
+.sidebar {
+  width: 220px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: red;
+  z-index: 3;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+  margin-right: -220px;
+  background: #222222;
+  transition: .3s;
+}
+
+.sidebar.opened {
+  margin-right: 0;
+}
+
+.sidebar.opened ~ .sidebar-overlay {
+  display: block;
+}
+
+.sidebar-nav {}
+.sidebar-nav a {
+  display: block;
+  padding: 10px 30px;
+  transtion: .3s;
+  background: transparent;
+  color: white;
+}
+.sidebar-nav a.active {
+  background: #2196F3;
+}
+
+.sidebar-user {}
+.sidebar-user__avatar {
+  width: 130px;
+  height: 130px;
+  margin: 20px auto 10px auto;
+  border-radius: 65px;
+  background-size: cover;
+  background-position: center center;
+}
+.sidebar-user__name {
+  text-align: center;
+  color: white;
+  margin-bottom: 25px;
+}
+

@@ -1,5 +1,5 @@
 class Admin::RequestsController < Admin::ApplicationController
-  before_action :set_request, only: [:show, :close, :open, :destroy]
+  before_action :set_request, only: [:show, :close, :open, :read]
 
   def index
     respond_to do |format|
@@ -10,10 +10,10 @@ class Admin::RequestsController < Admin::ApplicationController
         response.headers['total_count'] = @requests.count
         @requests = @requests.page(params[:page]).per(30)
 
-        render json: Oj.dump(@requests.pluck_fields)
+        render json: Oj.dump(@requests.pluck_fields([:new_messages_count_for_support]))
       }
       format.pdf {
-        @requests = filter_requests
+        @requests = filter_requests.limit(1000)
         
         @active_categories = Request::Category.where(id: params[:category_ids]) if params[:category_ids]
         @active_user = User.find_by(id: params[:user_id]) if params[:user_id]
@@ -21,7 +21,7 @@ class Admin::RequestsController < Admin::ApplicationController
         render :pdf => "report", :layout => 'pdf.html.slim'
       }
       format.csv {
-        @requests = filter_requests
+        @requests = filter_requests.limit(1000)
         send_data @requests.to_csv
       }
     end
@@ -50,9 +50,13 @@ class Admin::RequestsController < Admin::ApplicationController
     render json: {msg: "Request was successfully opened"}
   end
 
-  def destroy
-    @request.destroy
-    render json: {msg: "Request was successfully deleted"}
+  def read
+    @request.read! :support
+    render json: {}
+  end
+
+  def unreaded_count
+    render json: {unreaded_count: Request.unreaded.count}
   end
 
   private
@@ -61,11 +65,16 @@ class Admin::RequestsController < Admin::ApplicationController
     end
 
     def filter_requests
-      Request.look_for(params[:query])
-             .order("updated_at DESC")
+      requests = Request.look_for(params[:query])
+             .order_by(params[:sort])
              .with_status(params[:status])
              .with_categories(params.permit(category_ids: [])[:category_ids])
              .with_users([params[:user_id]])
              .between_dates(params[:date_from], params[:date_to])
+      if params[:unreaded]=='true' && params[:status].downcase == 'opened'
+        requests = requests.unreaded
+      end
+
+      return requests
     end
 end

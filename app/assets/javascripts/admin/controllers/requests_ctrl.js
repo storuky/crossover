@@ -1,27 +1,28 @@
-app.controller('AdminRequestsCtrl', ['action', 'AdminRequest', '$scope', 'AdminUser', 'AdminRequestMessage', '$timeout', function (action, AdminRequest, $scope, AdminUser, AdminRequestMessage, $timeout) {
+app.controller('AdminRequestsCtrl', ['action', 'AdminRequest', '$scope', 'AdminUser', 'AdminRequestMessage', '$timeout', '$localStorage', '$httpParamSerializer', '$rootScope', function (action, AdminRequest, $scope, AdminUser, AdminRequestMessage, $timeout, $localStorage, $httpParamSerializer, $rootScope) {
   var ctrl = this;
 
   action('index', function (params) {
     ctrl.resetFilter = function () {
       ctrl.filter = {
         status: "Opened",
-        category_ids: _.pluck(gon.categories, 'id')
+        category_ids: _.pluck(gon.categories, 'id'),
+        page: 1,
+        user: null,
+        user_id: null,
+        sort: ctrl.filter && ctrl.filter.sort ? ctrl.filter.sort : gon.requests_order_by[0]
       }
       ctrl.userSearchStr = "";
+
+      $localStorage.filter = ctrl.filter;
+      $localStorage.userSearchStr = ctrl.userSearchStr;
     }
 
-    ctrl.generatePDF = function () {
-      ctrl.filter.format = "pdf";
-      window.open(Routes.admin_requests_path(ctrl.filter));
-    }
-
-    ctrl.generateCSV = function () {
-      ctrl.filter.format = "csv";
+    ctrl.generateReport = function (format) {
+      ctrl.filter.format = format;
       window.open(Routes.admin_requests_path(ctrl.filter));
     }
     
-    ctrl.fetch = function (page) {
-      ctrl.filter.page = page || 1;
+    ctrl.fetch = function () {
       ctrl.filter.user_id = ctrl.filter.user ? ctrl.filter.user.originalObject[0] : null;
 
       ctrl.requests = AdminRequest.query(ctrl.filter, function (res, h) {
@@ -30,16 +31,32 @@ app.controller('AdminRequestsCtrl', ['action', 'AdminRequest', '$scope', 'AdminU
     }
 
     $scope.$watch('ctrl.filter', function (filter) {
-      if (filter)
-        ctrl.fetch(1)
+      if (filter) ctrl.fetch()
     }, true)
 
-    ctrl.resetFilter()
+    $scope.$on('new_request_message', function (e, data) {
+      _.each(ctrl.requests, function (request, index) {
+        if (request && data.message[6] == request[0]) {
+          ctrl.requests.splice(index, 1)
+        }
+      })
+
+      ctrl.requests.unshift(data.request)
+    })
+
+    if ($localStorage.filter) {
+      ctrl.filter = $localStorage.filter;
+      ctrl.userSearchStr = $localStorage.userSearchStr;
+    } else {
+      ctrl.resetFilter()
+    }
+
   })
 
   action('show', function (params) {
     ctrl.request = AdminRequest.get(params, function (res) {
-      ctrl.user = AdminUser.get({id: res.user_id})
+      ctrl.user = AdminUser.get({id: res.user_id});
+      $rootScope.$broadcast("update_unreaded_count");
     });
 
     AdminRequestMessage.query({request_id: params.id}, function (res) {
@@ -76,8 +93,17 @@ app.controller('AdminRequestsCtrl', ['action', 'AdminRequest', '$scope', 'AdminU
     })
 
     $scope.$on('new_request_message', function (e, data) {
-      if (data[6] == params.id)
-        ctrl.messages.push(data);
+      if (data.message[6] == params.id) {
+        ctrl.messages.push(data.message);
+        read();
+      }
     })
+    read();
+
+    function read() {
+      AdminRequest.read(params, function () {
+        $rootScope.$broadcast("update_unreaded_count");
+      });
+    }
   })
 }])

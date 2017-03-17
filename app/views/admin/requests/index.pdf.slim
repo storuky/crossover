@@ -10,6 +10,9 @@ h1 Report for requests
       .report-param__name By status:
       .report-param__value
         .status class="status-#{params[:status]}" = params[:status]
+  - if params[:unreaded]
+    .report-param
+      .report-param__name Unreaded
   - if params[:category_ids].try(:any?)
     .report-param
       .report-param__name With categories:
@@ -26,25 +29,27 @@ h1 Report for requests
       .report-param__name Date:
       .report-param__value
         div = "#{normalize_date(params[:date_from])} — #{normalize_date(params[:date_to])}"
+  .report-param
+    .report-param__name Total (max 1000):
+    .report-param__value = @requests.count
 
 hr
 
 table.table.table-bordered
-  thead
-    tr
-      th Title
-      th Messages
-      th Category
-      th User
-      th Date
-      th Status
+  tr
+    th Title
+    th Messages
+    th Category
+    th User
+    th Date
+    th Status
   tbody
     - @requests.pluck_fields.each do |r|
       tr
         td
           = r[1]
         td
-          = r[6]
+          = r[7]
         td
           = r[4]
         td

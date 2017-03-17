@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315075527) do
+ActiveRecord::Schema.define(version: 20170316151738) do
 
   create_table "request_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -29,13 +29,16 @@ ActiveRecord::Schema.define(version: 20170315075527) do
   end
 
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "status",         default: "opened"
+    t.string   "status",                         default: "opened"
     t.string   "title"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "messages_count", default: 0
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "messages_count",                 default: 0
+    t.boolean  "delta",                          default: true
+    t.integer  "new_messages_count_for_sender",  default: 0
+    t.integer  "new_messages_count_for_support", default: 0
     t.index ["category_id"], name: "index_requests_on_category_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -51,23 +54,24 @@ ActiveRecord::Schema.define(version: 20170315075527) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "avatar_id"
     t.string   "name"
     t.boolean  "banned"
     t.string   "avatar_url"
     t.string   "avatar"
+    t.boolean  "delta",                  default: true
     t.index ["avatar_id"], name: "index_users_on_avatar_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

@@ -4,6 +4,9 @@
   display: block;
   color: #333;
 }
+.request-row.unreaded {
+  font-weight: bold;
+}
 
 .request-row:hover {
   background: #f7f7f7;
@@ -22,22 +25,35 @@
   width: 15%;
 }
 .request-category {
-  width: 15%;
-}
-.request-user {
-  width: 10%;
+  width: 20%;
 }
 .request-status {
-  width: 10%;
+  width: 15%;
+}
+
+.request-user {
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .request-count {
+  visibility: hidden;
   width: 10%;
+  padding: 10px 0;
+  color: #a7a7a7;
+}
+
+.request-row.unreaded .request-count {
+  visibility: visible;
 }
 .request-count i {
   font-size: 20px;
   vertical-align: middle;
   margin-right: 5px;
+}
+
+.request-row.unreaded .request-count {
+  color: #4CAF50;
 }
 
 .request-header {
@@ -154,4 +170,20 @@
   top: 3px;
   font-size: 12px;
   color: #5d5d5d;
+}
+.request-message__content {
+  padding: 20px 10px;
+}
+
+.sort-requests {
+  white-space: nowrap;
+  padding: 10px;
+}
+.sort-requests select {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.request-splitter {
+  display: none;
 }

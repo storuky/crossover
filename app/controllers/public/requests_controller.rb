@@ -13,7 +13,7 @@ class Public::RequestsController < Public::ApplicationController
         response.headers['total_count'] = @requests.count
         @requests = @requests.page(params[:page]).per(30)
 
-        render json: Oj.dump(@requests.pluck_fields)
+        render json: Oj.dump(@requests.pluck_fields([:new_messages_count_for_sender]))
       }
     end
   end
@@ -42,7 +42,6 @@ class Public::RequestsController < Public::ApplicationController
         else
           render json: {msg: "Request not found", redirect_to_url: public_requests_path(status: "opened")}
         end
-
       }
     end
   end

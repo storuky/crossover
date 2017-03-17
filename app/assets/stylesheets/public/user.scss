@@ -1,11 +1,11 @@
 .user-page {
-  padding: 25px 0;
+  padding: 25px;
   margin: auto;
-  width: 800px;
+  max-width: 800px;
 }
 
 .user-col {
-  width: 300px;
+  width: calc(50% - 100px);
   float: left;
   margin-right: 25px;
 }
@@ -28,5 +28,5 @@
 }
 
 .user-avatar-col .btn {
-  width: 100%;
+  width: 150px;
 }

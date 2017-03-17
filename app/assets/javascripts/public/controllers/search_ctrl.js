@@ -2,18 +2,20 @@ app.controller('PublicSearchCtrl', ['$scope', 'action', 'Search', 'PublicRequest
   var ctrl = this;
 
   action('index', function (params) {
-    $scope.page = params.page;
+    Search.query = params.query;
 
-    ctrl.pagingAction = function (page) {
-      params.page = page;
+    ctrl.fetch = function (page) {
+      params.page = page || 1;
+      params.query = Search.query;
       
+      ctrl.requests = []
       $http.get(Routes.public_search_path({format: "json"}), {params: params}).then(function (res) {
         ctrl.requests = res.data;
         ctrl.total_count = res.headers().total_count;
       })
     }
 
-    ctrl.pagingAction(params.page || 1)
+    ctrl.fetch(1)
 
   })
 

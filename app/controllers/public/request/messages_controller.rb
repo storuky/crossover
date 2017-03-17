@@ -2,6 +2,7 @@ class Public::Request::MessagesController < Public::ApplicationController
   before_action :set_request
 
   def index
+    @request.read! :sender
     @messages = @request.messages.pluck_fields
     render json: @messages
   end

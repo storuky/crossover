@@ -3,6 +3,7 @@
   line-height: 20px;
   padding: 30px 40px;
   background-color: #222;
+  height: 82px;
 }
 
 .header a {
@@ -11,39 +12,11 @@
 }
 
 .header-inner {
-  -ms-flex-align: stretch;
-  -moz-box-align: stretch;
-  -webkit-box-align: stretch;
-  -webkit-align-items: stretch;
-  -moz-align-items: stretch;
-  -ms-align-items: stretch;
-  align-items: stretch;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-box-pack: space-between;
-  -moz-box-pack: space-between;
-  -moz-flex-pack: space-between;
-  -ms-flex-pack: space-between;
-  -webkit-justify-content: space-between;
-  -moz-justify-content: space-between;
-  -ms-justify-content: space-between;
-  justify-content: space-between;
-  -webkit-flex-flow: row nowrap;
-  -moz-flex-flow: row nowrap;
-  -ms-flex-flow: row nowrap;
-  flex-flow: row nowrap;
+
 }
 
 .header-logo {
-  -webkit-box-flex: 10%;
-  -moz-box-flex: 10%;
-  -webkit-flex: 10%;
-  -moz-flex: 10%;
-  -ms-flex: 10%;
-  flex: 10%;
+  position: absolute;
 }
 
 .header-logo a {
@@ -58,16 +31,18 @@
 
 .header-login, .header-logged {
   text-align: right;
-  -webkit-box-flex: 40%;
-  -moz-box-flex: 40%;
-  -webkit-flex: 40%;
-  -moz-flex: 40%;
-  -ms-flex: 40%;
-  flex: 40%;
+}
+
+.header-logged {
+  position: absolute;
+  right: 0;
 }
 
 .header-logged a {
   margin-left: 25px;
+}
+.header-logged a.active {
+  border-bottom: 1px solid;
 }
 
 .header-logged a .avatar {
@@ -89,23 +64,16 @@
   display: block;
   width: 100%;
   height: 100%;
-  -webkit-object-fit: cover;
-  -moz-object-fit: cover;
-  -ms-object-fit: cover;
-  -o-object-fit: cover;
-  object-fit: cover;
   overflow: hidden;
 }
 
 .header-search {
   white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
   text-align: center;
-  -webkit-box-flex: 30%;
-  -moz-box-flex: 30%;
-  -webkit-flex: 30%;
-  -moz-flex: 30%;
-  -ms-flex: 30%;
-  flex: 30%;
+  z-index: 2;
 }
 
 .header-search i {
@@ -137,4 +105,11 @@
   margin-left: 15px;
   cursor: pointer;
   font-size: 18px;
+}
+
+.toggle-sidebar {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  font-size: 20px;
 }

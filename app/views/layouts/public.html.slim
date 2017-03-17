@@ -12,7 +12,8 @@ html ng-app="app"
     = stylesheet_link_tag 'public'
   body.ng-cloak
     = render "layouts/public/header"
-
+    = render "layouts/public/sidebar"
+    
     .page.page-dashboard
       = render "public/requests/nav"
       ui-view

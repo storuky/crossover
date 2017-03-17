@@ -1,15 +1,18 @@
 .auth-form
   h2 Sign Up
-  form ng-submit="ctrl.submit()"
+  = form_for [:public, User.new], html: {"ng-submit" => "ctrl.submit($event)"} do |f|
     .form-group
-      label Email
-      input.form-control type="email" autofocus="true" ng-model="ctrl.user.email"
+      = f.label :name
+      = f.text_field :name, class: "form-control", autofocus: true
     .form-group
-      label Password
-      input.form-control type="password" autocomplete="off" ng-model="ctrl.user.password"
+      = f.label :email
+      = f.text_field :email, class: "form-control", autofocus: true
     .form-group
-      label Password confirmation
-      input.form-control type="password" autocomplete="off" ng-model="ctrl.user.password_confirmation"
+      = f.label :password
+      = f.password_field :password, class: "form-control", autocomplete: "off"
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, class: "form-control", autocomplete: "off"
     .form-group
       div ng-model="ctrl.user.recaptcha" vc-recaptcha="" key="'#{Rails.application.secrets[:recaptcha]["public_key"]}'"
     .actions

@@ -9,6 +9,16 @@ app.controller('PublicRequestsCtrl', ['action', 'PublicRequest', 'PublicRequestM
       });
     }
 
+    $scope.$on('new_request_message', function (e, data) {
+      _.each(ctrl.requests, function (request, index) {
+        if (request && data.message[6] == request[0]) {
+          ctrl.requests.splice(index, 1)
+        }
+      })
+
+      ctrl.requests.unshift(data.request)
+    })
+
     ctrl.fetch()
   })
 
@@ -29,8 +39,8 @@ app.controller('PublicRequestsCtrl', ['action', 'PublicRequest', 'PublicRequestM
     }
 
     $scope.$on('new_request_message', function (e, data) {
-      if (data[6] == params.id)
-        ctrl.messages.push(data);
+      if (data.message[6] == params.id)
+        ctrl.messages.push(data.message);
     })
 
     $scope.$watchCollection('ctrl.messages', function (messages, old) {

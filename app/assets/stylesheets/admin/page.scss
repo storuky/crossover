@@ -26,9 +26,10 @@
 }
 
 .page-centered {
-  width: 800px;
-  margin-left: -400px;
-  left: 50%;
+  max-width: 800px;
+  margin: auto;
+  height: 100%;
+  position: relative;
 }
 
 .page-full {
@@ -37,7 +38,7 @@
 
 .page-with-sidebar {
   left: 250px;
-  right: 40px;
+  right: 0;
 }
 
 .page-sidebar {

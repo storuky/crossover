@@ -1,5 +1,5 @@
 class Request::Message < ApplicationRecord
-  belongs_to :request, counter_cache: true
+  belongs_to :request, counter_cache: true, touch: true
   belongs_to :user
 
   validates :content, presence: true, length: { minimum: 2 }
@@ -7,6 +7,7 @@ class Request::Message < ApplicationRecord
 
   before_create :strip_tags
   before_create :set_user
+  after_create :update_new_messages_count
   after_create :ws
 
   class << self
@@ -20,17 +21,16 @@ class Request::Message < ApplicationRecord
     Request::Message.where(id: id).pluck_fields(fields, except).first
   end
 
-  def ws
-    self.request.users.each do |user|
-      RequestChannel.broadcast_to(user, self.pluck_fields)
-    end
-
-    User.with_role(:admin).where.not(id: self.request.user_ids).each do |user|
-      RequestChannel.broadcast_to(user, self.pluck_fields)
-    end
-  end
-
   private
+    def ws
+      request_user = request.user
+      users = User.joins(:roles).where(roles: {name: ["admin", "support_agent"]}) - [request_user] + [request_user]
+      users.each do |user|
+        new_messages_count = user.id == request.user_id ? :new_messages_count_for_sender : :new_messages_count_for_support
+        RequestChannel.broadcast_to(user, {message: self.pluck_fields, request: self.request.pluck_fields([new_messages_count])})
+      end
+    end
+
     def strip_tags
       white_list_sanitizer = Rails::Html::WhiteListSanitizer.new
       whitelist = ['p','b','h1','h2','h3','h4','h5','h6','li','ul','ol','small','i','u', 'a', 'img']
@@ -38,12 +38,20 @@ class Request::Message < ApplicationRecord
     end
 
     def set_user
-      self.user = request.user if !user
+      self.user_id = request.user_id if !user_id
     end
 
     def request_status
       if request&.closed?
         errors.add("Request was closed", "")
+      end
+    end
+
+    def update_new_messages_count
+      if self.user_id == request.user_id
+        request.increment! :new_messages_count_for_support
+      else
+        request.increment! :new_messages_count_for_sender
       end
     end
 end

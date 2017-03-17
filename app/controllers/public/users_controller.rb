@@ -19,7 +19,7 @@ class Public::UsersController < Public::ApplicationController
       if user_params[:password]
         sign_in(current_user, :bypass => true)
       end
-      render json: {msg: "Profile was successfully updated"}
+      render json: {msg: "Profile was successfully updated", current_user: serialize(current_user)}
     else
       render json: {msg: current_user.errors.full_messages.join(', ')}, status: 403
     end

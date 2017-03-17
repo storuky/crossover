@@ -5,16 +5,14 @@
   .form-group
     label Statuses
     switcher items="['Opened', 'Closed', 'All']" selected-item="ctrl.filter.status"
+    checkbox ng-model="ctrl.filter.unreaded" ng-show="ctrl.filter.status == 'Opened'" Only unreaded
   .form-group
     label Date range
     input.form-control date-range-picker="" type="text" placeholder="Select date range" date-from="ctrl.filter.date_from" date-to="ctrl.filter.date_to"
   .form-group
     label Categories
     div
-      label.checkbox ng-repeat="category in gon.categories"
-        input type="checkbox" checklist-model="ctrl.filter.category_ids" checklist-value="category.id"
-        i.material-icons.checkbox-not-checked check_box_outline_blank
-        i.material-icons.checkbox-checked check_box
+      checkbox ng-repeat="category in gon.categories" list="true" list-value="category.id" ng-model="ctrl.filter.category_ids" 
         span ng-bind="category.name"
   .form-group
     label User
@@ -22,20 +20,29 @@
   .form-group
     label Download
     div
-      .btn-download ng-click="ctrl.generatePDF()" PDF
-      .btn-download ng-click="ctrl.generateCSV()" CSV
+      .btn-download ng-click="ctrl.generateReport('pdf')" PDF
+      .btn-download ng-click="ctrl.generateReport('csv')" CSV
 .page.page-with-sidebar.page-with-footer.page-with-search
   search query="ctrl.filter.query"
   .page-content
-    a.request-row ui-sref="admin_request_path({id: request[0]})" ng-repeat="request in ctrl.requests"
-      .request-col.request-title ng-bind="::request[1]"
+    .request-row ui-sref="admin_request_path({id: request[0]})" ng-repeat="request in ctrl.requests" ng-class="{unreaded: request[8]}"
+      .request-col.request-title
+        span ng-bind="::request[1]"
+        div
+          | by
+          span.request-user ng-bind="::request[5]"
       .request-col.request-count
         i.material-icons speaker_notes
-        span ng-bind="::request[6]"
+        span ng-bind="request[8]"
+
       .request-col.request-category ng-bind="::request[4]"
-      .request-col.request-user ng-bind="::request[5]"
-      .request-col.request-date ng-bind="::request[2] | date"
+      .request-splitter
+      .request-col.request-date ng-bind="::request[2] | date:'medium'"
       .request-col.request-status
         div ng-class="::'status status-'+request[3]" ng-bind="::request[3]"
-  .page-footer
-    div ng-if="ctrl.total_count > 30" paging="" page="page" page-size="30" total="ctrl.total_count" paging-action="ctrl.fetch(page)"
+  .page-footer.clearfix
+    .pull-left.sort-requests
+      span Sort by
+      select.form-control ng-options="sort as sort for sort in gon.requests_order_by" ng-model="ctrl.filter.sort"
+    .pull-right
+      div ng-if="ctrl.total_count > 30" paging="" page="ctrl.filter.page" page-size="30" total="ctrl.total_count"

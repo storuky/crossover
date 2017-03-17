@@ -38,3 +38,15 @@
   background: #106CC8;
   color: white;
 }
+
+.sidebar-count {
+  float: right;
+  background: #F3741F;
+  display: inline-block;
+  line-height: 24px;
+  padding: 2px 8px;
+  margin: 10px 0;
+  border-radius: 25px;
+  font-size: 12px;
+  vertical-align: middle;
+}
