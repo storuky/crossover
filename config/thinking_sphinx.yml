@@ -1,6 +1,6 @@
 development: &generic
   #min_prefix_len: 2
-  bin_path: '/usr/local/bin'
+  # bin_path: '/usr/local/bin'
   mem_limit: 128M
   enable_star: 1
   expand_keywords: 1
