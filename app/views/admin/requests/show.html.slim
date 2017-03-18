@@ -1,7 +1,7 @@
 .page.page-centered
   .request-header
     a.request-header-avatar ui-sref="admin_user_path(ctrl.user)"
-      img ng-src="{{::ctrl.user.avatar_url || '/avatar.jpg'}}" height="40"
+      img ng-src="{{::ctrl.user.avatar_url}}" height="40"
     .request-header-username
       div
         a.black ui-sref="admin_user_path(ctrl.user)" ng-bind="ctrl.user.name"

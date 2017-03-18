@@ -12,7 +12,7 @@ header.header
       a ui-sref="edit_public_users_path()" ng-if="gon.current_user"
         span ng-bind="gon.current_user.name || gon.current_user.email"
         .avatar
-          img ng-src="{{gon.current_user.avatar.thumb.url || '/avatar.jpg'}}"
+          img ng-src="{{gon.current_user.avatar_url}}"
         a.sign-out sign="out" ng-show="gon.current_user"
           i.fa.fa-sign-out
 

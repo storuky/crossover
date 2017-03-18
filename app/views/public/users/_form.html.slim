@@ -4,10 +4,10 @@
       .user-col.user-avatar-col
         = f.label :avatar
         .user-avatar
-          img#user_avatar ng-src="{{gon.current_user.avatar.thumb.url || '/avatar.jpg'}}"
+          img#user_avatar ng-src="{{gon.current_user.avatar_url}}"
         .form-group
           label.btn.btn-success.pull-left
-            input#upload_avatar.hidden type="file" fileupload="Routes.avatar_public_users_path({format: 'json'})" ng-model="gon.current_user.avatar"
+            input#upload_avatar.hidden type="file" fileupload="Routes.avatar_public_users_path({format: 'json'})" ng-model="gon.current_user.avatar_url"
             | Upload
       .user-col
         .form-group

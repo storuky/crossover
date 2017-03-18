@@ -4,9 +4,9 @@
       .form-group
         = f.label :avatar
         .user-avatar
-          img#user_avatar ng-src="{{ctrl.user.avatar.thumb.url || '/avatar.jpg'}}" width="105"
+          img#user_avatar ng-src="{{ctrl.user.avatar_url}}" width="105"
         label.btn.btn-success
-          input.hidden#upload_avatar type="file" fileupload="Routes.avatar_admin_user_path({format: 'json', id: ctrl.user.id})" ng-model="ctrl.user.avatar"
+          input.hidden#upload_avatar type="file" fileupload="Routes.avatar_admin_user_path({format: 'json', id: ctrl.user.id})" ng-model="ctrl.user.avatar_url"
           | Upload
     .user-page-right
       .form-group

@@ -38,7 +38,7 @@ class Public::UsersController < Public::ApplicationController
   def avatar
     current_user.update(avatar: params[:attachments].first)
 
-    render json: [current_user.avatar]
+    render json: [current_user.avatar_url]
   end
 
   private

@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   private
     def set_avatar_url
-      self.update_column(:avatar_url, self.avatar.thumb.url)
+      self.update_column(:avatar_url, self.avatar&.thumb&.url || '/avatar.jpg')
     end
 
     def clear_cache

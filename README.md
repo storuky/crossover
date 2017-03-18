@@ -6,6 +6,7 @@ Depends on:
  * MySQL – general database
  * Sphinx – fulltext search engine
  * ImageMagik – image processing libraries
+ * Redis – as adapter for Action Cable
 
 ### Links
  * [http://crossover.habrapp.ru](https://github.com/markdown-it/markdown-it) – Demo application `admin@crossover.com` or `support@crossover.com` with password `123123123`

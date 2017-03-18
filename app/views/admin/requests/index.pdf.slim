@@ -1,7 +1,7 @@
 h1 Report for requests
 
 .report-params
-  - if params[:query]
+  - if params[:query].present?
     .report-param
       .report-param__name Search query:
       .report-param__value = "«#{params[:query]}»"

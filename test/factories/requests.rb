@@ -10,7 +10,7 @@ FactoryGirl.define do
     status {['opened', 'closed'].sample}
 
     before(:create) do |r|
-      (rand(10)+1).times {
+      (rand(5)+1).times {
         r.messages.new({content: Faker::Lorem.paragraph, user_id: r.user_id})
       }
     end

@@ -49,7 +49,7 @@ class Admin::UsersController < Admin::ApplicationController
   def avatar
     @user.update(avatar: params[:attachments].first)
 
-    render json: [@user.avatar]
+    render json: [@user.avatar_url]
   end
 
   def block

@@ -1,6 +1,6 @@
 .sidebar
   .sidebar-user
-    .sidebar-user__avatar ng-style="{'background-image': 'url('+(gon.current_user.avatar.thumb.url || '/avatar.jpg')+')'}"
+    .sidebar-user__avatar ng-style="{'background-image': 'url('+gon.current_user.avatar_url+')'}"
     .sidebar-user__name ng-bind="gon.current_user.name"
 
   nav.sidebar-nav
