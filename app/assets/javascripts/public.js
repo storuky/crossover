@@ -5,10 +5,10 @@
 
 var app = angular.module("app", ['oxymoron', 'bw.paging', 'ngDialog', 'ngSanitize', 'textAngular', 'ngTouch', 'vcRecaptcha'])
 
-app.run(['$rootScope', 'Search', function($rootScope, Search){
+app.run(['$rootScope', 'SearchService', function($rootScope, SearchService){
   $rootScope.gon = gon;
-  $rootScope.Search = Search;
   $rootScope.Routes = Routes;
+  $rootScope.SearchService = SearchService;
   
   $rootScope.$on('$stateChangeSuccess',function(){
     $("html, body").animate({ scrollTop: 0 });

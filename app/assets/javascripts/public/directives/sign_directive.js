@@ -1,4 +1,4 @@
-app.directive('sign', ['$http',function($http){
+app.directive('sign', ['SignService',function(SignService){
   // Runs during compile
   return {
     // name: '',
@@ -16,14 +16,7 @@ app.directive('sign', ['$http',function($http){
     link: function($scope, iElm, iAttrs, controller) {
       iElm.bind('click', function () {
         if (iAttrs.sign == 'out') {
-          $http.delete(Routes['logout_path']())
-               .then(function (res) {
-                 gon.current_user = null;
-               })
-        } else if (iAttrs.type == 'in'){
-          
-        } else if (iAttrs.type == 'up'){
-
+          SignService.out()
         }
       })
     }

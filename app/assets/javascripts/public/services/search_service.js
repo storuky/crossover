@@ -1,7 +1,11 @@
-app.service('Search', ['$state', function($state){
-  var Search = this;
+app.service('SearchService', ['$state', '$http', function($state, $http){
+  var SearchService = this;
 
-  Search.do = function () {
-    $state.go('public_search_path', {query: Search.query})
+  SearchService.go = function () {
+    $state.go('public_search_path', {query: SearchService.query})
+  }
+
+  SearchService.find = function (params) {
+    return $http.get(Routes.public_search_path({format: "json"}), {params: params})
   }
 }])

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
-feature 'Sign ', js: true do
+feature 'Sign', js: true do
 
   scenario 'in as user' do
     @user = FactoryGirl.create(:user)
@@ -31,13 +31,44 @@ feature 'Sign ', js: true do
     login @support_agent
 
     expect(page).to have_content('support agent')
+    expect(page).to have_current_path(admin_requests_path)
   end
 
   scenario 'up' do
     visit root_path
     register
     expect(page).to have_content('Welcome! You have signed up successfully.')
-    expect(page).to have_content('New request')
+    expect(page).to have_current_path(public_requests_path(status: "opened"))
+  end
+
+  scenario 'out' do
+    @user = FactoryGirl.create(:user)
+    login_as @user
+    
+    visit root_path
+    find("[sign='out']").click
+    expect(page).to have_content("Successfully signed out")
+    expect(page).to have_current_path(sign_path(type: "in"))
+  end
+
+  scenario 'out from admin panel' do
+    @admin = FactoryGirl.create(:user)
+    @admin.add_role :admin
+    login_as @admin
+    
+    visit root_path
+    find("[sign='out']").click
+    expect(page).to have_current_path(sign_path(type: "in"))
+  end
+
+  scenario 'out if blocked' do
+    @user = FactoryGirl.create(:user)
+    @user.block!
+
+    login_as @user
+    
+    visit root_path
+    expect(page).to have_current_path(sign_path(type: "in"))
   end
 end
 

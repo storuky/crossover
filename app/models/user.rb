@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :avatar, file_size: { less_than: 2.megabytes }
   validates :name, presence: true
 
-  has_many :requests
+  has_many :requests, dependent: :destroy
   has_many :messages, class_name: Request::Message
 
   after_save :set_avatar_url
@@ -21,9 +21,17 @@ class User < ApplicationRecord
     end
   end
 
+  def block!
+    self.update(blocked: true)
+  end
+
+  def unblock!
+    self.update(blocked: false)
+  end
+
   class << self
     def pluck_fields fields = [], except = []
-      args = [:id, :name, :email, :avatar_url, :banned] + fields - except
+      args = [:id, :name, :email, :avatar_url, :blocked] + fields - except
       self.pluck *args
     end
 

@@ -15,15 +15,19 @@ app.controller('AdminUsersCtrl', ['action', 'AdminUser', '$scope', function (act
     ctrl.save = AdminUser.update;
 
     ctrl.block = function () {
-      AdminUser.block(params, function () {
-        ctrl.user.banned = true;
-      })
+      if (confirm("Are you sure?")) {
+        AdminUser.block(params, function () {
+          ctrl.user.blocked = true;
+        })
+      }
     }
 
     ctrl.unblock = function () {
-      AdminUser.unblock(params, function () {
-        ctrl.user.banned = false;
-      })
+      if (confirm("Are you sure?")) {
+        AdminUser.unblock(params, function () {
+          ctrl.user.blocked = false;
+        })
+      }
     }
   })
 }])

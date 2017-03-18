@@ -13,7 +13,7 @@
       .request-message__date ng-bind="::message[2] | date:'medium'"
       .request-message__content ng-bind-html-compile="::message[1]"
   form.request-actions ng-submit="ctrl.send()"
-    div text-angular="" ng-model="ctrl.content" ta-toolbar="taToolbar"
-    a.btn.btn-danger.pull-left ng-click="ctrl.close()" ng-show="ctrl.request.status == 'opened'" Close request
-    a.btn.btn-success.pull-left ng-click="ctrl.open()" ng-show="ctrl.request.status == 'closed'" Open request
-    button.btn.btn-accent.pull-right Send
+    #message_body text-angular="" ng-model="ctrl.content" ta-toolbar="taToolbar"
+    a.btn.btn-danger.pull-left#close_request ng-click="ctrl.close()" ng-show="ctrl.request.status == 'opened'" Close request
+    a.btn.btn-success.pull-left#open_request ng-click="ctrl.open()" ng-show="ctrl.request.status == 'closed'" Open request
+    button.btn.btn-accent.pull-right#send Send

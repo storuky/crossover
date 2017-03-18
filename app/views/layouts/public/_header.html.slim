@@ -2,9 +2,9 @@ header.header
   .header-inner
     .header-logo
       a ui-sref="public_requests_path({status: 'opened'})" CROSSOVER
-    form.header-search ng-submit="Search.do()" ng-show="gon.current_user"
+    form.header-search ng-submit="SearchService.go()" ng-show="gon.current_user"
       i.fa.fa-search
-      input#search_field type="text" placeholder="Search" ng-model="Search.query" ng-class="{active: Search.query}"
+      input#search_field type="text" placeholder="Search" ng-model="SearchService.query" ng-class="{active: SearchService.query}"
     .header-logged
       div ng-hide="gon.current_user"
         a ui-sref="sign_path({type: 'in'})" ui-sref-active="active" Sign in

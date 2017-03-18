@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
   before_action :set_user, only: [:show, :update, :avatar, :block, :unblock]
-  before_action :check_admin, except: [:index]
+  before_action :check_admin, except: [:index, :show]
 
   def index
     respond_to do |format|
@@ -53,12 +53,12 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def block
-    @user.update(banned: true)
+    @user.block!
     render json: {msg: "User was successfully blocked"}
   end
 
   def unblock
-    @user.update(banned: false)
+    @user.unblock!
     render json: {msg: "User was successfully unblocked"}
   end
 

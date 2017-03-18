@@ -1,17 +1,17 @@
-= form_for [:admin, User.new] do |f|
+= form_for [:admin, User.new], html: {id: "user_form"} do |f|
   .clearfix
     .user-page-left
       .form-group
         = f.label :avatar
         .user-avatar
-          img ng-src="{{ctrl.user.avatar.thumb.url || '/avatar.jpg'}}" width="105"
+          img#user_avatar ng-src="{{ctrl.user.avatar.thumb.url || '/avatar.jpg'}}" width="105"
         label.btn.btn-success
-          input.hidden type="file" fileupload="Routes.avatar_admin_user_path({format: 'json', id: ctrl.user.id})" ng-model="ctrl.user.avatar"
+          input.hidden#upload_avatar type="file" fileupload="Routes.avatar_admin_user_path({format: 'json', id: ctrl.user.id})" ng-model="ctrl.user.avatar"
           | Upload
     .user-page-right
       .form-group
         = f.label :role
-        select.form-control ng-options="role as role for role in gon.roles" ng-model="ctrl.user.role"
+        select.form-control#user_role ng-options="role as role for role in gon.roles" ng-model="ctrl.user.role"
 
       .form-group
         = f.label :name
@@ -31,6 +31,6 @@
 
 
   .actions.clearfix
-    a.btn.btn-danger.pull-left ng-click="ctrl.block()" ng-hide="ctrl.user.banned" Block
-    a.btn.btn-success.pull-left ng-click="ctrl.unblock()" ng-show="ctrl.user.banned" Unblock
+    a.btn.btn-danger.pull-left#block ng-click="ctrl.block()" ng-hide="ctrl.user.blocked" Block
+    a.btn.btn-success.pull-left#unblock ng-click="ctrl.unblock()" ng-show="ctrl.user.blocked" Unblock
     = f.submit "Submit", class: "btn btn-accent pull-right"

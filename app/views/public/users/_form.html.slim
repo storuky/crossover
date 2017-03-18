@@ -1,0 +1,32 @@
+= form_for [:public, User.new], html: {id: "user_form"} do |f|
+  form#user_form ng-submit="ctrl.save({id: ctrl.user.id, user: ctrl.user})"
+    .clearfix
+      .user-col.user-avatar-col
+        = f.label :avatar
+        .user-avatar
+          img#user_avatar ng-src="{{gon.current_user.avatar.thumb.url || '/avatar.jpg'}}"
+        .form-group
+          label.btn.btn-success.pull-left
+            input#upload_avatar.hidden type="file" fileupload="Routes.avatar_public_users_path({format: 'json'})" ng-model="gon.current_user.avatar"
+            | Upload
+      .user-col
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: "form-control"
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: "form-control"
+      .user-col
+        .form-group
+          label Current password
+          input.form-control#user_current_password type="password" autofocus="true" ng-model="ctrl.user.current_password"
+        .form-group
+          = f.label :password
+          = f.password_field :password, class: "form-control"
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, class: "form-control"
+
+    .user-submit.clearfix
+      button.btn.btn-accent.pull-left type="submit" Update
+      a.btn.btn-danger.pull-right#cancel ng-click="ctrl.cancel()" Cancel account

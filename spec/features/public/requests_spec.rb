@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
-feature 'Request ', js: true do
+feature 'Request', js: true do
 
   scenario 'create' do
     @user = FactoryGirl.create(:user)
@@ -67,7 +67,7 @@ feature 'Request ', js: true do
     login_as @user
     visit root_path
     
-    find('input#search_field').set "#{@request.title}\n"
+    find('input#search_field').set "#{@request.title.split(' ').first}\n"
 
     expect(page).to have_content(@request.title)
 

@@ -6,7 +6,7 @@ class Request < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
   accepts_nested_attributes_for :messages
   has_many :users, -> { uniq }, through: :messages
 
@@ -64,8 +64,8 @@ class Request < ApplicationRecord
 
   def read! who
     ThinkingSphinx::Deltas.suspend(:requests) do
-      if who == :sender
-        self.update(new_messages_count_for_sender: 0)
+      if who == :customer
+        self.update(new_messages_count_for_customer: 0)
       elsif who == :support
         self.update(new_messages_count_for_support: 0)
       end

@@ -26,7 +26,7 @@ class Request::Message < ApplicationRecord
       request_user = request.user
       users = User.joins(:roles).where(roles: {name: ["admin", "support_agent"]}) - [request_user] + [request_user]
       users.each do |user|
-        new_messages_count = user.id == request.user_id ? :new_messages_count_for_sender : :new_messages_count_for_support
+        new_messages_count = user.id == request.user_id ? :new_messages_count_for_customer : :new_messages_count_for_support
         RequestChannel.broadcast_to(user, {message: self.pluck_fields, request: self.request.pluck_fields([new_messages_count])})
       end
     end
@@ -51,7 +51,7 @@ class Request::Message < ApplicationRecord
       if self.user_id == request.user_id
         request.increment! :new_messages_count_for_support
       else
-        request.increment! :new_messages_count_for_sender
+        request.increment! :new_messages_count_for_customer
       end
     end
 end

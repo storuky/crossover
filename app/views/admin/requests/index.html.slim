@@ -5,7 +5,7 @@
   .form-group
     label Statuses
     switcher items="['Opened', 'Closed', 'All']" selected-item="ctrl.filter.status"
-    checkbox ng-model="ctrl.filter.unreaded" ng-show="ctrl.filter.status == 'Opened'" Only unreaded
+    checkbox#filter_unreaded ng-model="ctrl.filter.unreaded" ng-show="ctrl.filter.status == 'Opened'" Only unreaded
   .form-group
     label Date range
     input.form-control date-range-picker="" type="text" placeholder="Select date range" date-from="ctrl.filter.date_from" date-to="ctrl.filter.date_to"

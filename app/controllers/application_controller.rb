@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :sign_out_if_banned
+  before_action :sign_out_if_blocked
 
   layout proc {
     if request.xhr?
@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
       gon.categories = serialize(Request::Category.all)
     end
 
-    def sign_out_if_banned
-      if current_user&.banned?
+    def sign_out_if_blocked
+      if current_user&.blocked?
         sign_out current_user
 
         if request.xhr?

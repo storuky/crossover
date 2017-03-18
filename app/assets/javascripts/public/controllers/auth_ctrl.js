@@ -1,24 +1,12 @@
-app.controller('AuthCtrl', ['action', '$http', function(action, $http){
+app.controller('AuthCtrl', ['action', 'SignService', function(action, SignService){
   var ctrl = this;
 
   action("sign", function (params) {
-    var methods = {
-      in: "login",
-      up: "register"
-    }
-
-    ctrl.user = {
-      action: methods[params.type]
-    }
-
     ctrl.submit = function ($event) {
-
-      $http.post(Routes[methods[params.type]+'_path'](), {user: ctrl.user})
-           .then(function (res) {
-             if (!res.data.reload) gon.current_user = res.data.current_user;
-           }, function () {
-            if (ctrl.user.action == "register") grecaptcha.reset();
-           })
+      SignService[params.type](ctrl.user).then(function (res) {
+        if (!res.data.reload)
+          gon.current_user = res.data.current_user;
+      })
 
       $event.preventDefault();
       $event.stopPropagation();

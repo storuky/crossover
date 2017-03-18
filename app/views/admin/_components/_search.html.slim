@@ -1,4 +1,4 @@
 .search
   i.material-icons.search-icon search
-  input type="search" placeholder="Search" ng-model="query" ng-model-options="{debounce: 200}"
+  input#search_field type="search" placeholder="Search" ng-model="query" ng-model-options="{debounce: 200}"
   i.material-icons.close-icon ng-show="query" ng-click="reset()" close

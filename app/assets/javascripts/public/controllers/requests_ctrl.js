@@ -3,7 +3,7 @@ app.controller('PublicRequestsCtrl', ['action', 'PublicRequest', 'PublicRequestM
 
   action('index', function (params) {
     ctrl.fetch = function (page) {
-      params.page = page || 1;
+      params.page = page;
       ctrl.requests = PublicRequest.query(params, function (res, h) {
         ctrl.total_count = h().total_count;
       });
