@@ -46,7 +46,7 @@ feature 'User', js: true do
       find("#upload_avatar", visible: false).set(file)
       sleep 1
       @user.reload
-      expect(page.evaluate_script("$('#user_avatar').attr('src')")).to eq @user.avatar.thumb.url
+      expect(page.evaluate_script("$('#user_avatar').attr('src')")).to eq @user.avatar_url
     end
   end
 

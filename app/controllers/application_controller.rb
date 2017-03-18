@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   private
     def set_gon
       gon.current_user = serialize(current_user) if current_user
-      gon.roles = ['admin', 'support_agent']
+      gon.roles = ['admin', 'support_agent', 'customer']
       gon.unreaded_count = Request.unreaded.count
       gon.categories = serialize(Request::Category.all)
     end

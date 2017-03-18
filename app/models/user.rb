@@ -29,6 +29,10 @@ class User < ApplicationRecord
     self.update(blocked: false)
   end
 
+  def avatar_url
+    self.read_attribute :avatar_url
+  end
+
   class << self
     def pluck_fields fields = [], except = []
       args = [:id, :name, :email, :avatar_url, :blocked] + fields - except

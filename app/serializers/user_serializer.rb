@@ -4,8 +4,4 @@ class UserSerializer < ActiveModel::Serializer
   def role
     object.roles&.first&.name
   end
-
-  def avatar_url
-    object.read_attribute :avatar_url
-  end
 end
