@@ -68,7 +68,7 @@ class Admin::RequestsController < Admin::ApplicationController
       requests = Request.look_for(params[:query])
              .order_by(params[:sort])
              .with_status(params[:status])
-             .with_categories(params.permit(category_ids: [])[:category_ids])
+             .with_categories(params[:category_ids])
              .with_users([params[:user_id]])
              .between_dates(params[:date_from], params[:date_to])
       if params[:unreaded]=='true' && params[:status].downcase == 'opened'
