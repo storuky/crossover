@@ -34,13 +34,13 @@ class Request < ApplicationRecord
     end
   }
 
-  scope :with_categories, -> (category_ids = []) {
+  scope :with_categories, -> (category_ids) {
     if category_ids&.any?
       joins(:category).where(request_categories: {id: category_ids})
     end
   }
 
-  scope :with_users, -> (user_ids = []) {
+  scope :with_users, -> (user_ids) {
     if user_ids&.any?
       joins(:user).where(users: {id: user_ids})
     end
