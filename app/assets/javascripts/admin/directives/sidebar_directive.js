@@ -1,4 +1,4 @@
-app.directive('toggleSidebar', [function(){
+app.directive('sidebar', [function(){
   // Runs during compile
   return {
     // name: '',
@@ -14,7 +14,25 @@ app.directive('toggleSidebar', [function(){
     // transclude: true,
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
-      iElm.bind('click', function () {
+      var toggleSidebar;
+      (toggleSidebar = function(){
+        if (document.body.offsetWidth <= 1150) {
+          $(iElm).addClass("collapse")
+        } else {
+          $(iElm).removeClass("collapse")
+        }
+      })();
+
+      window.onresize = function() {
+        toggleSidebar();
+      }
+      window.onresize();
+
+      $('.page-bg').click(function () {
+        toggleSidebar();
+      })
+
+      $('.toggle-sidebar').bind('click', function () {
         $('.sidebar').toggleClass('collapse')
       })
     }

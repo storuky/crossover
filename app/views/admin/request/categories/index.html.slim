@@ -1,0 +1,13 @@
+.page.page-centered.page-with-search.page-with-footer
+  search query="ctrl.filter.query"
+  .page-content
+    .crossover-list
+      .crossover-list__item ng-repeat="category in ctrl.categories | filter:ctrl.filter.query"
+        .crossover-list__item__description
+          a ng-class="{blocked: category[4]}" ng-bind="::category[1]" ui-sref="edit_admin_request_category_path({id: category[0]})"
+
+
+  .page-footer.clearfix.page-actions
+    .pull-right
+      a.btn.btn-success ui-sref="new_admin_request_category_path" New category
+

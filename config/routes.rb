@@ -30,7 +30,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "home#index"
 
+    namespace :request do
+      resources :categories
+    end
+
     resources :requests do
+      shallow do
+      end
       resources :messages, controller: "request/messages"
 
       member do

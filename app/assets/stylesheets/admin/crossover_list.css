@@ -8,7 +8,7 @@
   color: #333;
   text-decoration: none;
 }
-.alphabetical__item__photo {
+.crossover-list__item__photo {
   border-radius: 50px;
   overflow: hidden;
   display: inline-block;
@@ -21,11 +21,14 @@
   background-size: cover !important;
   background-position: center !important;
 }
-.alphabetical__item__description {
+.crossover-list__item__description {
   vertical-align: middle;
   display: inline-block;
   text-decoration: none !important;
 }
-.alphabetical__item__description a {
+.crossover-list__item__description a {
   margin-right: 15px;
+}
+.crossover-list__item__description a:hover {
+  text-decoration: underline;
 }

@@ -4,8 +4,8 @@
   .page-content
     .crossover-list
       .crossover-list__item ng-repeat="user in ctrl.users"
-        .alphabetical__item__photo ng-style="{'background-image': 'url('+user[3]+')'}"
-        .alphabetical__item__description
+        .crossover-list__item__photo ng-style="{'background-image': 'url('+user[3]+')'}"
+        .crossover-list__item__description
           a ng-class="{blocked: user[4]}" ng-bind="::user[1]" ui-sref="edit_admin_user_path({id: user[0]})"
           br
           .small
