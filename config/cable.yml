@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: redis://redis.example.com:6379
+  url: redis://127.0.0.1:6379
 
 local: &local
   adapter: redis

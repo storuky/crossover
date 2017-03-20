@@ -1,6 +1,4 @@
 class Request < ApplicationRecord
-  after_save ThinkingSphinx::RealTime.callback_for(:product)
-
   require 'csv'
   include AASM
   belongs_to :user
