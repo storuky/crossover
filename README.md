@@ -15,8 +15,11 @@ Depends on:
 ### How to install
 1. If you are using RVM you should install ruby-2.4.0 and create project gemset
 2. Clone `config/database.yml.example` to `config/database.yml` and fill it with your database settings
-3. Restore from `db/dump.sql` or if you need the initial app you should run `rake db:create db:migrate`
+3. Restore from `../SQL/crossover_dump.sql` or if you need the initial db you should run `rake db:create db:migrate`
 4. Start Sphinx and re-index the data using `rake ts:rebuild`
+Notice: If you chose initial db, you should run `rake db:seed`
+
+Sql
 
 ### Feedback
 Good assignment. Not so simple, not so difficult.

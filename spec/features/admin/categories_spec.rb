@@ -50,7 +50,7 @@ feature 'Admin Category', js: true do
     expect(@category.name).to eq(name)
   end
 
-  scenario 'destroy', focus: true do
+  scenario 'destroy' do
     login_as_admin
 
     @category = FactoryGirl.create(:request_category)
