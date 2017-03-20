@@ -27,7 +27,7 @@ class Request::Message < ApplicationRecord
       users = User.joins(:roles).where(roles: {name: ["admin", "support_agent"]}) - [request_user] + [request_user]
       users.each do |user|
         new_messages_count = user.id == request.user_id ? :new_messages_count_for_customer : :new_messages_count_for_support
-        RequestChannel.broadcast_to(user, {message: self.pluck_fields, request: self.request.pluck_fields([new_messages_count])})
+        RequestChannel.broadcast_to(user, {message: self.pluck_fields, request: self.request.pluck_fields([new_messages_count])}) rescue Rails.logger.error "WS error"
       end
     end
 
