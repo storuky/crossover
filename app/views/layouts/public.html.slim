@@ -19,7 +19,6 @@ html ng-app="app"
       ui-view
     
     = render template: "public/_components/index"
-    = render template: "public/_modals/index"
     = Gon::Base.render_data({})
     script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async="" defer=""
     = javascript_include_tag 'public'
