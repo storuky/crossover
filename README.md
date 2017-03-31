@@ -9,7 +9,7 @@ Depends on:
  * Redis – as adapter for Action Cable
 
 ### Links
- * [http://crossover.habrapp.ru](https://github.com/markdown-it/markdown-it) – Demo application `admin@crossover.com` or `support@crossover.com` with password `123123123`
+ * [http://crossover.habrapp.ru](http://crossover.habrapp.ru) – Demo application `admin@crossover.com` or `support@crossover.com` with password `123123123`
  * [https://github.com/storuky/crossover](https://github.com/storuky/crossover) – Github repository
 
 ### How to install
